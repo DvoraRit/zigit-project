@@ -1,0 +1,9 @@
+.row-raiting {
+    margin: 5px;
+    &.low{
+        background-color: rgb(211, 138, 138);
+    }
+    &.high{
+        background-color: rgb(159, 231, 159);
+    }
+}
