@@ -3,7 +3,6 @@ import UserService from "../BL/api";
 import classes from "./UserProfile.module.css";
 import DataTable from "./DataTable/DataTable";
 import Loader from "./Loader";
-import Spinner from "react-bootstrap/Spinner";
 
 function UserProjects() {
   const userService = new UserService();

@@ -1,16 +1,16 @@
 import classes from './Auth.module.css';
 import { useDispatch} from 'react-redux';
 import {authActions} from '../BL/store/Auth-Slice';
-import { useRef } from 'react';
+import { useRef,useState } from 'react';
 import UserService from '../BL/api';
 import { useNavigate } from 'react-router-dom';
 import { Formik,Form,Field } from 'formik';
 import * as Yup from 'yup';
-
+import Loader from './Loader';
 const Auth = () => {
   const userService = new UserService();
   const formikRef = useRef();
-
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -29,7 +29,9 @@ const Auth = () => {
     }),
     onSubmit: async (values) => {
       try{
+        setLoading(true);
         let user =await userService.getUserFromServer(values);
+        setLoading(false);
         navigate('/info');
         dispatch(authActions.login(user.data[0]));
       }catch(err){
@@ -43,7 +45,8 @@ const Auth = () => {
     <main className={classes.auth}>
       <section>
         <Formik {...formikProps} innerRef={formikRef}>
-          {({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
+          {({ values, errors, touched, handleChange, handleBlur, handleSubmit, 
+          isSubmitting,isValidating }) => (
             <Form onSubmit={handleSubmit}>
              
           <div className={classes.control}>
@@ -61,7 +64,9 @@ const Auth = () => {
           <label className={classes.error}>{errors.password}</label>
           }
           <div>
-            <button type="submit">Login</button>
+            <button type="submit">
+              {loading ? <><Loader/> Loading... </>: 'Login'}
+              </button>
           </div>
         </Form>
           )}
