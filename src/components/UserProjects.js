@@ -51,7 +51,7 @@ function UserProjects() {
     <>
       <main className={classes.profile}>
         {loading ? (
-          <div>loading...</div>
+          <Loader />
         ) : (
           <DataTable columns={columns} data={data} sorting={true} />
         )}

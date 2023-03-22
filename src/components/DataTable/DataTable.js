@@ -13,8 +13,7 @@ function DataTable({ columns, data, sorting=false }) {
 
   return (
     <table
-      class="table table-hover"
-      className={classes.table}
+    className="table table-hover"
       {...getTableProps()}
     >
       <thead>
