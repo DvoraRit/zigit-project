@@ -7,3 +7,10 @@
         background-color: rgb(159, 231, 159);
     }
 }
+
+.arrow-head{
+    cursor: pointer;
+    &.true{
+        transform: rotate(180deg);
+    }
+}

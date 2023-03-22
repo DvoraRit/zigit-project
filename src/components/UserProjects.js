@@ -18,6 +18,7 @@ function UserProjects() {
         return {
           Header: key,
           accessor: key,
+          sort:false
         };
       });
       setColumns(columns);
@@ -52,7 +53,7 @@ function UserProjects() {
         {loading ? (
           <div>loading...</div>
         ) : (
-          <DataTable columns={columns} data={data} />
+          <DataTable columns={columns} data={data} sorting={true} />
         )}
       </main>
     </>
